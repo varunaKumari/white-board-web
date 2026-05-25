@@ -5,8 +5,8 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { User } from "./user";
 import JWTService from "../services/jwtService";
-export async function initServer(){
-  const app=express();
+export async function initServer(): Promise<express.Application> {
+  const app = express();
   app.use(cors());
   app.use(bodyParser.json());
   const server=new ApolloServer({
