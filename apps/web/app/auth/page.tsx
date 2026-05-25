@@ -162,10 +162,11 @@ export default function AuthForm() {
   const handleLoginGoogle = useCallback(async (cred: TokenResponse) => {
     const googleToken = cred.access_token;
     if (googleToken) {
-      const response: { verifyGoogleToken: string } =
-        await graphqlClient.request(verifyGoogleTokenMutation, {
-          token: googleToken,
-        });
+      const response = await graphqlClient.request<{
+        verifyGoogleToken: string | null;
+      }>(verifyGoogleTokenMutation, {
+        token: googleToken,
+      });
       const { verifyGoogleToken } = response;
       console.log(verifyGoogleToken);
       if (verifyGoogleToken) {

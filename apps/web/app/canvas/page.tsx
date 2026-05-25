@@ -14,17 +14,7 @@ export default function RoomJoinPage() {
     tags: string[];
   }
 
-  interface RoomData {
-    slug: string;
-    admin: { name: string };
-    tags: string[];
-  }
-
-  interface Data {
-    rooms?: RoomData[];
-  }
-
-  const data: Data = useGetAllRooms();
+  const data = useGetAllRooms();
 
   const roomsData: Room[] = data.rooms?.map((room, index) => ({
     id: index + 1,
