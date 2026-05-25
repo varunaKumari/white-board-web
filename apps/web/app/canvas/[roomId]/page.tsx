@@ -1,11 +1,11 @@
 "use client"
-import { IconBrush, IconCircle, IconEraser, IconLine, IconLineDashed, IconPointer, IconPointerBolt, IconRectangle, IconSquare, IconTriangle } from "@tabler/icons-react";
+import { IconBrush, IconCircle, IconEraser, IconLine, IconPointerBolt, IconRectangle, IconSquare, IconTriangle } from "@tabler/icons-react";
 import Canvas from "@utils/components/self/canvas";
-import Canvas2 from "@utils/components/self/canvas2";
+
 import { FloatingDock } from "@utils/components/self/floatingDock";
 import BlockSwapLoader from "app/loading";
 import { useSocket } from "hooks/useSockets";
-import { ArrowBigDown, ArrowRightLeft } from "lucide-react";
+import { ArrowRightLeft } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 export default function Page() {
@@ -83,7 +83,7 @@ export default function Page() {
  console.log(password);
  const {loading,socket}=useSocket(roomId,password);
 type Shape = 'rectangle' | 'circle' | 'line' | 'freehand' | 'square' | 'arrow' | 'eraser' | 'triangle'|'pointer';
-  const [currentShape, setCurrentShape] = useState<Shape>('freehand');
+  const [, setCurrentShape] = useState<Shape>('freehand');
   const [color, setColor] = useState('#000000');
   const [lineWidth, setLineWidth] = useState(2);
 

@@ -11,6 +11,7 @@ import { graphqlClient } from "useCases/Providersclients/api";
 import { CreateRoomMutation, CreateRoomMutationVariables } from "gql/graphql";
 import { createRoomMutation } from "graphql/mutation/user";
 import { redirect } from "next/navigation";
+import type { RequestDocument } from "graphql-request";
 
 interface FormData {
   slug: string;
@@ -28,7 +29,6 @@ export default function App() {
     },
   });
   const [password, setPassword] = useState<string>("");
-  const currentTag = watch("tags");
 
   const onSubmit = async(data: FormData) => {
     console.log("Form submitted:", data);
@@ -37,7 +37,7 @@ export default function App() {
       tags:data.tags,
       password:password
     }
-    const ans=await graphqlClient.request<CreateRoomMutation,CreateRoomMutationVariables>(createRoomMutation as any,payload);
+    await graphqlClient.request<CreateRoomMutation,CreateRoomMutationVariables>(createRoomMutation as unknown as RequestDocument,payload);
     console.log(payload);
     redirect("/canvas")
   };

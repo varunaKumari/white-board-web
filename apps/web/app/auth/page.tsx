@@ -26,6 +26,12 @@ interface TokenDiffResponse {
 interface TokendiffResponse {
   verifyCredentialsToken: string;
 }
+interface AuthFormData {
+  name?: string;
+  email: string;
+  password: string;
+  confirmPassword?: string;
+}
 export default function AuthForm() {
   const [isSignUp, setIsSignUp] = useState(false);
   const {
@@ -34,7 +40,7 @@ export default function AuthForm() {
     reset,
     setError,
     formState: { errors },
-  } = useForm();
+  } = useForm<AuthFormData>();
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [isOtpPage, setIsOtpPage] = useState(false);
 
@@ -57,7 +63,7 @@ export default function AuthForm() {
       }, timeout);
     });
   }
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: AuthFormData) => {
     console.log("Form Data:", data);
     if(isForgotPassword){
       const payload = {
